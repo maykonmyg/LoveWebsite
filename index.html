@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -26,7 +26,11 @@
       }
       body {
         min-height: 100vh;
-        background: radial-gradient(ellipse at 50% 35%, #5c2323, var(--d) 70%);
+        background: radial-gradient(
+          ellipse at 50% 35%,
+          #5c2323,
+          var(--d) 70%
+        );
         color: var(--d);
         font-family: "Special Elite", "Courier New", monospace;
         padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0)
@@ -56,6 +60,7 @@
       .hr {
         color: var(--r);
       }
+
       /* lock */
       #lock {
         position: fixed;
@@ -67,9 +72,7 @@
         align-items: center;
         justify-content: center;
         gap: 1.4rem;
-        transition:
-          opacity 1s,
-          transform 1s;
+        transition: opacity 1s, transform 1s;
       }
       #lock.gone {
         opacity: 0;
@@ -85,20 +88,19 @@
         perspective: 900px;
       }
       .env::before {
-        content: "";
+        content: '';
         position: absolute;
         inset: 0;
         z-index: 5;
         pointer-events: none;
         border: 0.5rem solid;
         border-image: repeating-linear-gradient(
-            135deg,
-            var(--r) 0 10px,
-            #e8d4b2 10px 20px,
-            var(--pp) 20px 30px,
-            #e8d4b2 30px 40px
-          )
-          8;
+          135deg,
+          var(--r) 0 10px,
+          #e8d4b2 10px 20px,
+          var(--pp) 20px 30px,
+          #e8d4b2 30px 40px
+        ) 8;
       }
       .lt {
         position: absolute;
@@ -128,9 +130,7 @@
         background: var(--g), #cfb185;
         clip-path: polygon(0 0, 100% 0, 50% 100%);
         transform-origin: top;
-        transition:
-          transform 0.8s,
-          z-index 0s 0.4s;
+        transition: transform 0.8s, z-index 0s 0.4s;
       }
       .seal {
         border-radius: 50%;
@@ -138,15 +138,8 @@
         display: grid;
         place-items: center;
         color: var(--pp);
-        background: radial-gradient(
-          circle at 35% 30%,
-          #c42020,
-          var(--r) 60%,
-          #5c0303
-        );
-        box-shadow:
-          0 0.2em 0.5em rgba(0, 0, 0, 0.45),
-          inset 0 0 0 0.25em rgba(0, 0, 0, 0.18);
+        background: radial-gradient(circle at 35% 30%, #c42020, var(--r) 60%, #5c0303);
+        box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.45), inset 0 0 0 0.25em rgba(0, 0, 0, 0.18);
       }
       #sl {
         position: absolute;
@@ -167,50 +160,44 @@
       #lock.open #sl {
         opacity: 0;
       }
-      #f {
+      #dots {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.6rem;
-        justify-content: center;
-        align-items: center;
-        max-width: 90vw;
+        gap: 0.9rem;
       }
-      #f label {
-        color: var(--pp);
-        font-size: 1.7rem;
-        flex-basis: 100%;
-        text-align: center;
+      #dots i {
+        width: 0.9rem;
+        height: 0.9rem;
+        border-radius: 50%;
+        border: 2px solid var(--pp);
       }
-      #pw {
+      #dots i.on {
+        background: var(--p);
+        border-color: var(--p);
+      }
+      #pad {
+        display: grid;
+        grid-template-columns: repeat(3, min(4.2rem, 8.5vh));
+        gap: 0.7rem;
+      }
+      #pad button {
         font: inherit;
-        padding: 0.6rem 0.9rem;
-        width: 14rem;
-        background: #f6ead3;
-        border: 0;
-        border-bottom: 2px solid var(--r);
-        color: var(--d);
-      }
-      #f button,
-      nav button {
-        font: inherit;
-        padding: 0.6rem 1.2rem;
+        font-size: 1.4rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
         background: var(--r);
         color: var(--pp);
-        border: 1px solid var(--pp);
+        border: 2px solid var(--pp);
         cursor: pointer;
+        box-shadow: inset 0 0 0 3px var(--d), 0 3px 0 #000;
       }
-      #f button:hover,
-      nav button:hover:not(:disabled) {
+      #pad button:active {
+        transform: translateY(3px);
         background: var(--p);
         color: var(--d);
       }
-      nav button:disabled {
-        opacity: 0.35;
-        cursor: default;
-      }
-      :focus-visible {
-        outline: 2px solid var(--p);
-        outline-offset: 2px;
+      #kl {
+        color: var(--pp);
+        font-size: 1.7rem;
       }
       #ms {
         color: var(--p);
@@ -222,16 +209,7 @@
       #lock.shake .env {
         animation: sh 0.45s;
       }
-      @keyframes sh {
-        20%,
-        60% {
-          transform: translateX(-10px);
-        }
-        40%,
-        80% {
-          transform: translateX(10px);
-        }
-      }
+
       /* book */
       #app {
         min-height: 100vh;
@@ -365,6 +343,27 @@
         min-width: 9rem;
         text-align: center;
       }
+      nav button {
+        font: inherit;
+        padding: 0.6rem 1.2rem;
+        background: var(--r);
+        color: var(--pp);
+        border: 1px solid var(--pp);
+        cursor: pointer;
+      }
+      nav button:hover:not(:disabled) {
+        background: var(--p);
+        color: var(--d);
+      }
+      nav button:disabled {
+        opacity: 0.35;
+        cursor: default;
+      }
+      :focus-visible {
+        outline: 2px solid var(--p);
+        outline-offset: 2px;
+      }
+
       /* parts */
       .ph {
         position: relative;
@@ -422,7 +421,7 @@
         transform: rotate(-2deg);
       }
       .strip::after {
-        content: "24 · 01 · 2024";
+        content: "06 · 10 · 2026";
         position: absolute;
         bottom: 0.8em;
         left: 0;
@@ -466,7 +465,11 @@
             var(--r) 2.6% 14%,
             transparent 14.5%
           ),
-          repeating-radial-gradient(circle, #0c0c0c 0 0.35%, #1d1d1d 0.35% 0.7%);
+          repeating-radial-gradient(
+            circle,
+            #0c0c0c 0 0.35%,
+            #1d1d1d 0.35% 0.7%
+          );
         box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.5);
       }
       .cam {
@@ -530,7 +533,11 @@
         text-align: center;
         background:
           var(--g),
-          repeating-linear-gradient(90deg, #f3e4c8 0 0.9em, #ebd5b0 0.9em 1.8em);
+          repeating-linear-gradient(
+            90deg,
+            #f3e4c8 0 0.9em,
+            #ebd5b0 0.9em 1.8em
+          );
         clip-path: polygon(
           0 0,
           100% 0,
@@ -589,6 +596,17 @@
         color: var(--r);
         font-size: 0.9em;
       }
+      @keyframes sh {
+        20%,
+        60% {
+          transform: translateX(-10px);
+        }
+        40%,
+        80% {
+          transform: translateX(10px);
+        }
+      }
+
       /* slideshow */
       #show {
         position: fixed;
@@ -677,6 +695,7 @@
         cursor: pointer;
         z-index: 2;
       }
+
       /* mobile: vertical scrapbook */
       @media (max-width: 820px) {
         :root {
@@ -736,47 +755,6 @@
         box-shadow:
           inset 0 0 0 3px var(--d),
           0 3px 0 #000;
-      }
-      #dots {
-        display: flex;
-        gap: 0.9rem;
-      }
-      #dots i {
-        width: 0.9rem;
-        height: 0.9rem;
-        border-radius: 50%;
-        border: 2px solid var(--pp);
-      }
-      #dots i.on {
-        background: var(--p);
-        border-color: var(--p);
-      }
-      #pad {
-        display: grid;
-        grid-template-columns: repeat(3, min(4.2rem, 8.5vh));
-        gap: 0.7rem;
-      }
-      #pad button {
-        font: inherit;
-        font-size: 1.4rem;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        background: var(--r);
-        color: var(--pp);
-        border: 2px solid var(--pp);
-        cursor: pointer;
-        box-shadow:
-          inset 0 0 0 3px var(--d),
-          0 3px 0 #000;
-      }
-      #pad button:active {
-        transform: translateY(3px);
-        background: var(--p);
-        color: var(--d);
-      }
-      #kl {
-        color: var(--pp);
-        font-size: 1.7rem;
       }
       .face.m {
         position: absolute;
@@ -937,6 +915,7 @@
     </style>
   </head>
   <body>
+    <!-- TELA DE BLOQUEIO -->
     <div id="lock">
       <div class="env">
         <div class="lt sc">for you, always</div>
@@ -944,13 +923,14 @@
         <div class="fl"></div>
         <div class="seal" id="sl">♥</div>
       </div>
-      <div id="kp" style="display: contents">
+      <div id="kp" style="display:contents">
         <p class="sc" id="kl">digite a senha</p>
         <div id="dots"></div>
         <div id="pad"></div>
       </div>
       <p id="ms"></p>
     </div>
+
     <main id="app">
       <div id="bw">
         <div id="book"><div id="st"></div></div>
@@ -961,6 +941,7 @@
         ><button id="nx" aria-label="Próxima página">›</button>
       </nav>
     </main>
+
     <div id="show">
       <div id="im"></div>
       <div class="gr"></div>
@@ -969,12 +950,98 @@
       <button id="x" aria-label="Close slideshow">✕</button>
     </div>
     <input type="file" accept="image/*" id="fi" hidden />
+
     <script>
+      // =========================================================================
+      // VARIÁVEIS DAS IMAGENS
+      // Substitua o caminho entre aspas pelo caminho da sua imagem (Ex: './imagem1.jpg')
+      // Se deixar em branco (''), o sistema gerará o molde padrão de ilustração.
+      // =========================================================================
+      const IMG_1 = "./img/imagem1.jpg";
+        const IMG_2 = "./img/imagem2.jpg";
+        const IMG_3 = "./img/imagem3.jpg";
+        const IMG_4 = "./img/imagem4.jpg";
+        const IMG_5 = "./img/imagem5.jpg";
+        const IMG_6 = "./img/imagem6.jpg";
+        const IMG_7 = "./img/imagem7.jpg";
+        const IMG_8 = "./img/imagem8.jpg";
+        const IMG_9 = "./img/imagem9.jpg";
+        const IMG_10 = "./img/imagem10.jpg";
+        const IMG_11 = "./img/imagem11.jpg";
+        const IMG_12 = "./img/imagem12.jpg";
+        const IMG_13 = "./img/imagem13.jpg";
+        const IMG_14 = "./img/imagem14.jpg";
+        const IMG_15 = "./img/imagem15.jpg";
+        const IMG_16 = "./img/imagem16.jpg";
+        const IMG_17 = "./img/imagem17.jpg";
+        const IMG_18 = "./img/imagem18.jpg";
+        const IMG_19 = "./img/imagem19.jpg";
+        const IMG_20 = "./img/imagem20.jpg";
+        const IMG_21 = "./img/imagem21.jpg";
+        const IMG_22 = "./img/imagem22.jpg";
+        const IMG_23 = "./img/imagem23.jpg";
+        const IMG_24 = "./img/imagem24.jpg";
+        const IMG_25 = "./img/imagem25.jpg";
+        const IMG_26 = "./img/imagem26.jpg";
+        const IMG_27 = "./img/imagem27.jpg";
+        const IMG_28 = "./img/imagem28.jpg";
+        const IMG_29 = "./img/imagem29.jpg";
+        const IMG_30 = "./img/imagem30.jpg";
+        const IMG_31 = "./img/imagem31.jpg";
+        const IMG_32 = "./img/imagem32.jpg";
+        const IMG_33 = "./img/imagem33.jpg";
+
+      const IMAGES = [
+        IMG_1,
+        IMG_2,
+        IMG_3,
+        IMG_4,
+        IMG_5,
+        IMG_6,
+        IMG_7,
+        IMG_8,
+        IMG_9,
+        IMG_10,
+        IMG_11,
+        IMG_12,
+        IMG_13,
+        IMG_14,
+        IMG_15,
+        IMG_16,
+        IMG_17,
+        IMG_18,
+        IMG_19,
+        IMG_20,
+        IMG_21,
+        IMG_22,
+        IMG_23,
+        IMG_24,
+        IMG_25,
+        IMG_26,
+        IMG_27,
+        IMG_28,
+        IMG_29,
+        IMG_30,
+        IMG_31,
+        IMG_32,
+        IMG_33,
+      ];
+
+      // Pré-carregamento das imagens em memória
+      IMAGES.forEach((src) => {
+        if (src && src.trim() !== "") {
+          const img = new Image();
+          img.src = src;
+        }
+      });
+
       const $ = (s) => document.querySelector(s),
         mq = matchMedia("(max-width:820px)"),
         L = 7;
+
       const PASS = "2401",
         HINT = "dica: 2401 · altere a senha no código";
+
       const Q = [
         [
           "Onde foi nosso primeiro encontro?",
@@ -983,13 +1050,13 @@
         ],
         [
           "Quem disse “eu te amo” primeiro?",
-          ["Eu", "Você", "Os dois juntos"],
+          ["Voce", "Eu", "Os dois juntos"],
           1,
         ],
-        ["Qual é a nossa música?", ["Música A", "Música B", "Música C"], 2],
+        ["Que dia se conhecemos", ["01 Julho", "04 Setembro", "01 Setembro"], 2],
         [
           "O que mais gostamos de fazer juntos?",
-          ["Viajar", "Conversar até tarde", "Cozinhar"],
+          ["Jogar", "Comer", "Andar juntos"],
           1,
         ],
       ];
@@ -1008,6 +1075,7 @@
           });
       const SRC = (k, r) => {
         if (store[k]) return store[k];
+        if (IMAGES[k] && IMAGES[k].trim() !== "") return IMAGES[k];
         const [a, b] = r.split("/").map(Number),
           w = a * 100,
           h = b * 100,
@@ -1044,7 +1112,7 @@
       const note = (p, t) =>
         `<div class="sw a" style="${p}"><p class="sp" style="clip-path:${T(p.length)}">${t}</p></div>`;
       const LO =
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Troque este texto por uma lembrança de vocês dois.";
+        "Você me encanta de uma forma assuntadora, mágica e anormal. Sinto que meu coração palpita mais a cada dia e a cada conversa";
       const quiz = () =>
         Q.map(
           (q, i) =>
@@ -1055,23 +1123,23 @@
         return [
           [
             "cl",
-            `<i class="a" style="inset:3.5%;border:1px solid var(--pp);opacity:.55"></i><p class="a" style="top:8%;width:100%;text-align:center;letter-spacing:.4em;font-size:.9em">THE DAY OF</p>
-<h1 class="a sc" style="top:12%;width:100%;text-align:center;font-size:5.4em;line-height:1;color:var(--p);font-weight:400">Anniversary</h1>
+            `<i class="a" style="inset:3.5%;border:1px solid var(--pp);opacity:.55"></i><p class="a" style="top:8%;width:100%;text-align:center;letter-spacing:.4em;font-size:.9em">O dia do</p>
+<h1 class="a sc" style="top:12%;width:100%;text-align:center;font-size:5.4em;line-height:1;color:var(--p);font-weight:400">Presente</h1>
 <div class="a" style="left:10%;top:38%;width:80%;display:flex;gap:5%">${ph("1/1", "flex:1;border-radius:50%;border:.45em solid var(--pp)")}${ph("1/1", "flex:1;border-radius:50%;border:.45em solid var(--pp)")}</div>
 ${str("M30 62 C36 78 44 52 50 74 S64 84 70 62")}<b class="a st" style="left:9%;top:30%">✦</b><b class="a st" style="right:10%;top:68%">✦</b>
-<p class="a sc" style="bottom:13%;width:100%;text-align:center;font-size:2.4em">to my favorite person</p><p class="a" style="bottom:7%;width:100%;text-align:center;color:var(--p);font-size:.9em">24 · 01 · 2024 &nbsp;♥&nbsp; open the book ›</p>`,
+<p class="a sc" style="bottom:13%;width:100%;text-align:center;font-size:2.4em">Para minha pessoa favorita  </p><p class="a" style="bottom:7%;width:100%;text-align:center;color:var(--p);font-size:.9em">24 · 01 · 2024 &nbsp;♥&nbsp; Abra no livro ›</p>`,
           ],
           [
             "pa",
-            `<div class="seal a" style="left:6%;top:4%;width:13%;font-size:.8em">LOVE</div><h2 class="a h" style="left:24%;top:6%;transform:rotate(-4deg);font-size:3.3em;width:72%">Favorite person</h2>
+            `<div class="seal a" style="left:6%;top:4%;width:13%;font-size:.8em">Amor</div><h2 class="a h" style="left:24%;top:6%;transform:rotate(-4deg);font-size:3.3em;width:72%">Pessoa favorita</h2>
 <div class="strip a" style="left:7%;top:24%;width:37%">${ph("4/3")}${ph("4/3")}${ph("4/3")}</div>
-${pol("1/1", "left:50%;top:22%;width:42%;--rot:4deg", "us, always")}${tp("left:62%;top:20%;--rot:-5deg")}
-${note("left:47%;top:57%;width:48%", "“i chose you, and i would choose you again.” " + LO)}<b class="a hr" style="left:40%;top:50%;font-size:2.4em">♥</b>${str("M18 12 C40 34 28 52 52 42 S72 24 80 40")}`,
+${pol("1/1", "left:50%;top:22%;width:42%;--rot:4deg", "Juntos sempre")}${tp("left:62%;top:20%;--rot:-5deg")}
+${note("left:47%;top:57%;width:48%", "“Eu amo essa mulher” " + LO)}<b class="a hr" style="left:40%;top:50%;font-size:2.4em">♥</b>${str("M18 12 C40 34 28 52 52 42 S72 24 80 40")}`,
           ],
           [
             "pa ln",
-            `<h2 class="a h" style="left:10%;top:3%;font-size:3em">Dear you,</h2><p class="a hd" style="left:10%;top:15%;width:82%;font-size:1.75em;line-height:1.5;color:var(--r)">${LO} Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</p>
-${pol("1/1", "left:7%;top:53%;width:42%;--rot:-5deg", "our favorite day")}${tp("left:15%;top:51%;--rot:4deg")}${pol("3/4", "left:54%;top:48%;width:37%;--rot:6deg", "just us")}${tp("left:62%;top:46%;--rot:-8deg")}
+            `<h2 class="a h" style="left:10%;top:3%;font-size:3em">Amo você,</h2><p class="a hd" style="left:10%;top:15%;width:82%;font-size:1.75em;line-height:1.5;color:var(--r)">Amei e semprevou guardar na memória nosos primeiro encontro, as sensações e o quão meu coração estava batendo naquele momento...</p>
+${pol("1/1", "left:7%;top:53%;width:42%;--rot:-5deg", "Te amo")}${tp("left:15%;top:51%;--rot:4deg")}${pol("3/4", "left:54%;top:48%;width:37%;--rot:6deg", "Nós")}${tp("left:62%;top:46%;--rot:-8deg")}
 <b class="a hr" style="right:8%;top:6%;font-size:2.6em">♥</b>`,
           ],
           [
@@ -1081,13 +1149,13 @@ ${pol("1/1", "left:7%;top:53%;width:42%;--rot:-5deg", "our favorite day")}${tp("
 <div class="scr a" style="left:4%;top:7%;width:68%">${ph("4/3")}</div><p class="a" style="left:5%;bottom:5%;font-size:.8em;color:var(--pp)">MEMORY·CAM</p>
 <u style="right:5%;top:45%;width:17%"></u><u style="right:8%;top:13%;width:10%;background:var(--p)"></u><u style="right:7%;top:77%;width:8%"></u><u style="right:19%;top:77%;width:8%"></u></div>
 ${pol("1/1", "left:48%;top:51%;width:42%;--rot:5deg", "say cheese")}${tp("left:58%;top:49%;--rot:-4deg")}
-<p class="a sc" style="left:8%;top:60%;width:36%;font-size:2.6em;line-height:1">little moments, saved forever</p><p class="a" style="left:8%;top:84%;width:36%;font-size:.9em;color:var(--p)">${LO.slice(0, 60)}…</p>`,
+<p class="a sc" style="left:8%;top:60%;width:36%;font-size:2.6em;line-height:1">Pequenos momentos, Salvos pra sempre</p><p class="a" style="left:8%;top:84%;width:36%;font-size:.9em;color:var(--p)">${LO.slice(0, 60)}…</p>`,
           ],
           [
             "pa",
-            `<div class="vin a" style="left:-68%;top:30%"></div><h2 class="a h" style="left:7%;top:4%;font-size:3em">Our favorite songs</h2>
-<p class="a" style="left:7%;top:17%;width:38%;font-size:1.05em;line-height:1.8;color:var(--r)">1. Song title one<br>2. Song title two<br>3. Song title three<br>4. Song title four<br>5. Song title five</p>
-${pol("1/1", "left:47%;top:3%;width:40%;--rot:8deg", "track 01")}${pol("1/1", "left:55%;top:30%;width:40%;--rot:-6deg", "track 02")}${pol("1/1", "left:41%;top:57%;width:42%;--rot:5deg", "track 03")}${tp("left:58%;top:1%;--rot:-3deg")}${tp("left:68%;top:28%;--rot:5deg")}`,
+            `<div class="vin a" style="left:-68%;top:30%"></div><h2 class="a h" style="left:7%;top:4%;font-size:3em">Musicas</h2>
+<p class="a" style="left:7%;top:17%;width:50%;font-size:1.05em;line-height:1.8;color:var(--r)">1. Cartier Santos Dumount<br>2. Dynamite<br>3. Chamber of Reflection<br>4. My Own Summer<br>5. Malandro demais Vira Bicho</p>
+${pol("1/1", "left:47%;top:3%;width:40%;--rot:8deg", "música 01")}${pol("1/1", "left:55%;top:30%;width:40%;--rot:-6deg", "música 02")}${pol("1/1", "left:41%;top:57%;width:42%;--rot:5deg", "música 03")}${tp("left:58%;top:1%;--rot:-3deg")}${tp("left:68%;top:28%;--rot:5deg")}`,
           ],
           [
             "dk",
@@ -1097,7 +1165,7 @@ ${note("left:53%;top:9%;width:41%", LO)}${pol("3/4", "left:53%;top:48%;width:38%
           [
             "pa",
             `<h2 class="a h" style="left:0;top:3%;width:100%;text-align:center;font-size:3.4em">Cartão-postal</h2>
-<div class="a" style="left:6%;top:16%;width:88%;height:50%;background:var(--g),#f6ead3;border:1px solid var(--r);box-shadow:0 .3em .8em rgba(63,23,23,.4);transform:rotate(-2deg)"><p class="a hd" style="left:5%;top:5%;width:50%;font-size:1.5em;line-height:1.25;color:var(--r)">Meu amor,<br>saudades de você em cada detalhe. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Com todo o carinho, seu eterno admirador.</p><i class="a" style="left:58%;top:8%;bottom:8%;border-left:1px solid var(--r)"></i>
+<div class="a" style="left:6%;top:16%;width:88%;height:50%;background:var(--g),#f6ead3;border:1px solid var(--r);box-shadow:0 .3em .8em rgba(63,23,23,.4);transform:rotate(-2deg)"><p class="a hd" style="left:5%;top:5%;width:50%;font-size:1.5em;line-height:1.25;color:var(--r)">Meu amor,<br>saudades de você em cada detalhe. <br>Com todo o carinho, seu eterno admirador.</p><i class="a" style="left:58%;top:8%;bottom:8%;border-left:1px solid var(--r)"></i>
 <div class="sm a" style="right:5%;top:7%;width:24%">${ph("3/4")}</div><div class="pm a" style="right:21%;top:14%;width:24%">SÃO PAULO<br>24 JAN<br>2024</div>
 <div class="a" style="left:63%;top:56%;width:32%;height:32%;background:repeating-linear-gradient(transparent 0 1.8em,var(--r) 1.8em calc(1.8em + 1px));font-size:.85em">Para: meu amor</div></div>
 ${pol("1/1", "left:55%;top:69%;width:32%;--rot:5deg", "nós dois")}${tp("left:61%;top:67%;--rot:-5deg")}<p class="a hd" style="left:7%;top:72%;width:40%;font-size:1.5em;line-height:1.2;color:var(--r)">P.S.: guardei cada bilhete que você me escreveu.</p>`,
@@ -1106,7 +1174,7 @@ ${pol("1/1", "left:55%;top:69%;width:32%;--rot:5deg", "nós dois")}${tp("left:61
             "pa",
             `<i class="cf a" style="left:62%;top:60%;width:34%"></i><p class="a" style="left:0;top:4%;width:100%;background:var(--r);color:var(--pp);text-align:center;padding:.5em;letter-spacing:.4em;font-size:1.1em">TELEGRAMA</p>
 <p class="a" style="left:8%;top:13%;width:84%;font-size:1.05em"><b>DE:</b> SEU AMOR &nbsp; <b>PARA:</b> VOCÊ &nbsp; <b>HORA:</b> 23H59</p>
-<div class="a" style="left:7%;top:20%;width:86%;font-size:1.2em;line-height:1.5"><span class="ts" style="--rot:-2deg">EU AMO VOCÊ</span><span class="ts" style="--rot:1.5deg">STOP</span><span class="ts" style="--rot:-1deg">SAUDADE ENORME</span><span class="ts" style="--rot:2deg">STOP</span><span class="ts" style="--rot:-1.5deg">LOREM IPSUM DOLOR SIT AMET</span><span class="ts" style="--rot:1deg">STOP</span><span class="ts" style="--rot:-2deg">VOLTE LOGO</span></div>
+<div class="a" style="left:7%;top:20%;width:86%;font-size:1.2em;line-height:1.5"><span class="ts" style="--rot:-2deg">EU AMO VOCÊ</span><span class="ts" style="--rot:1.5deg">STOP</span><span class="ts" style="--rot:-1deg">SAUDADE ENORME</span><span class="ts" style="--rot:2deg">STOP</span><span class="ts" style="--rot:-1.5deg">MEU VIVER</span><span class="ts" style="--rot:1deg">STOP</span><span class="ts" style="--rot:-2deg">VOLTE LOGO</span></div>
 <p class="stmp a" style="left:55%;top:48%;font-size:1.5em">URGENTE ♥</p>${pol("1/1", "left:8%;top:57%;width:38%;--rot:-4deg", "recebido")}${tp("left:16%;top:55%;--rot:5deg")}${pol("3/4", "left:54%;top:62%;width:32%;--rot:5deg", "enviado")}`,
           ],
           [
@@ -1135,10 +1203,10 @@ ${str("M22 40 C10 55 40 60 28 76 S60 90 70 70 S90 40 60 30 S30 10 52 22 S82 30 7
           ],
           [
             "dk",
-            `<h2 class="a sc" style="left:0;top:4%;width:100%;text-align:center;font-size:3.6em;color:var(--p);font-weight:400;line-height:1">Our story goes on</h2>
-${pol("1/1", "left:8%;top:17%;width:38%;--rot:-6deg", "chapter one")}${pol("1/1", "left:52%;top:15%;width:38%;--rot:5deg", "chapter two")}${tp("left:20%;top:15%;--rot:5deg")}${tp("left:64%;top:13%;--rot:-4deg")}
-<button class="cine a" id="pl" style="left:9%;top:55%;width:82%"><span style="font-size:.85em;letter-spacing:.3em">ADMIT TWO</span><br><span class="h" style="font-size:3.1em;display:block">Play our memories</span><span style="font-size:.9em">▶ press to begin the show</span></button>
-<p class="a" style="left:0;top:88%;width:100%;text-align:center;font-size:.9em;color:var(--p)">no popcorn required ♥</p>`,
+            `<h2 class="a sc" style="left:0;top:4%;width:100%;text-align:center;font-size:3.6em;color:var(--p);font-weight:400;line-height:1">Nossa história aqui</h2>
+${pol("1/1", "left:8%;top:17%;width:38%;--rot:-6deg", "Capitulo um")}${pol("1/1", "left:52%;top:15%;width:38%;--rot:5deg", "Capitulo dois")}${tp("left:20%;top:15%;--rot:5deg")}${tp("left:64%;top:13%;--rot:-4deg")}
+<button class="cine a" id="pl" style="left:9%;top:55%;width:82%"><span style="font-size:.85em;letter-spacing:.3em">Começar</span><br><span class="h" style="font-size:3.1em;display:block">Nossas memórias</span><span style="font-size:.9em">Aperte para começar</span></button>
+<p class="a" style="left:0;top:88%;width:100%;text-align:center;font-size:.9em;color:var(--p)">Não precisa de pipoca ♥</p>`,
           ],
           [
             "cl",
@@ -1176,7 +1244,13 @@ ${pol("1/1", "left:8%;top:17%;width:38%;--rot:-6deg", "chapter one")}${pol("1/1"
       function upd() {
         const m = mq.matches,
           c = m ? mi : cur;
-        $("#book").className = m ? "" : cur == 0 ? "c0" : cur == L ? "cE" : "";
+        $("#book").className = m
+          ? ""
+          : cur == 0
+            ? "c0"
+            : cur == L
+              ? "cE"
+              : "";
         $("#pg").textContent = m
           ? `${mi + 1} / ${NP}`
           : cur
@@ -1276,7 +1350,9 @@ ${pol("1/1", "left:8%;top:17%;width:38%;--rot:-6deg", "chapter one")}${pol("1/1"
         const a = [...document.querySelectorAll(".sl")];
         a.forEach((e, i) => e.classList.toggle("on", i == si % a.length));
         $("#cap").textContent =
-          "lembrança nº " + String((si % a.length) + 1).padStart(2, "0") + " ♥";
+          "lembrança nº " +
+          String((si % a.length) + 1).padStart(2, "0") +
+          " ♥";
         si++;
       }
       function stop() {
@@ -1284,7 +1360,8 @@ ${pol("1/1", "left:8%;top:17%;width:38%;--rot:-6deg", "chapter one")}${pol("1/1"
         $("#show").classList.remove("on");
       }
       $("#x").onclick = stop;
-      /* lock */
+
+      /* lock script */
       $("#ms").textContent = HINT;
       let code = "";
       const chk = () => {
@@ -1334,6 +1411,7 @@ ${pol("1/1", "left:8%;top:17%;width:38%;--rot:-6deg", "chapter one")}${pol("1/1"
         if (/^\d$/.test(e.key)) press(e.key);
         else if (e.key == "Backspace") press("⌫");
       });
+
       dots();
       build();
     </script>
